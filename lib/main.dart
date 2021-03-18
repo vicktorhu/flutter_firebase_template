@@ -79,6 +79,9 @@ class _RegisterState extends State<RegistrationForm> {
           .createUserWithEmailAndPassword(
               email: textEmailController.text,
               password: textPasswordController.text);
+
+      textEmailController.text = "";
+      textPasswordController.text = "";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -91,8 +94,6 @@ class _RegisterState extends State<RegistrationForm> {
       setState(() {
         isLoading = false;
       });
-      textEmailController.text = "";
-      textPasswordController.text = "";
     }
   }
 
